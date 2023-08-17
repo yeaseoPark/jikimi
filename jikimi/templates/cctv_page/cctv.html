@@ -1,0 +1,69 @@
+{% extends 'parent_page.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cctv_page</title>
+  <link rel="stylesheet" href="{% static 'detail.css'%}">
+</head>
+<body>
+
+  <div class="cctv-wrapper">
+    <div class="cctv-left">
+      <div class="cctv-title">
+        <p class="cctv-list">CCTV list</p>
+      </div>
+      <ul class="cctv-ul">
+	    <div class="scroll-bg">
+			<div class="scroll-div">
+				<div class="scroll-object">
+	
+
+        {% for video in videoList %}
+        
+            <li class="cctv-li" id="{{ video.video_path }}">
+                {{ video.video_date }}
+            <br/>
+                {{ video.video_start_time }}
+            </li>
+
+        {% endfor %}
+
+    </div>
+</div>
+</div>
+        </ul>
+    </div>
+    <div class="cctv-right">
+      <div class="video">
+        <p class="video-name">{{ request.user.user_school.school_name }} CCTV</p>
+           
+        </div>
+        {% if video_url %}
+        <video autoplay controls>
+            <source src="{{ video_url }}" type="video/mp4">
+                zzz
+        </video>
+        {% else %}
+        <video autoplay controls>
+            <source src="" type="video/mp4">
+                  zzz
+        </video>
+        {% endif %}
+
+    </div>
+  </div>
+
+<script src="{% static 'cctv_page/script.js' %}"></script>
+ 
+</body>
+</html>
+
+{% endblock %}
